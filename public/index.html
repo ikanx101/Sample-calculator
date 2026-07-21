@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Ukuran Sampel</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="page">
+  <header class="header">
+    <h1>Kalkulator Ukuran Sampel</h1>
+    <p class="subhead">Hitung jumlah responden minimum yang dibutuhkan untuk survei atau penelitian Anda.</p>
+  </header>
+
+  <main class="layout">
+    <section class="card form-card">
+      <h2 class="card-title">Input</h2>
+
+      <div class="field-group">
+        <label class="field-label" for="population-mode-unknown">1. Populasi</label>
+        <div class="radio-row">
+          <label class="radio-option">
+            <input type="radio" name="population-mode" id="population-mode-unknown" value="unknown" checked>
+            Tidak diketahui / tak terhingga
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="population-mode" id="population-mode-known" value="known">
+            Diketahui
+          </label>
+        </div>
+        <div class="sub-field hidden" id="population-size-wrap">
+          <label class="sub-label" for="population-size">Jumlah populasi (N)</label>
+          <input type="number" id="population-size" min="1" step="1" placeholder="contoh: 5000">
+        </div>
+        <p class="explanation">
+          Populasi adalah jumlah total orang atau unit yang ingin Anda pelajari (misalnya seluruh karyawan
+          perusahaan, seluruh pelanggan aktif, atau seluruh penduduk suatu kota). Jika Anda tahu persis
+          jumlahnya, pilih <strong>"Diketahui"</strong> dan masukkan angkanya — hasil perhitungan akan lebih
+          efisien untuk populasi kecil. Jika populasinya sangat besar atau tidak diketahui jumlah pastinya
+          (misalnya "semua pengguna internet di Indonesia"), pilih <strong>"Tidak diketahui / tak terhingga"</strong>.
+        </p>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="margin-of-error">2. Margin of Error</label>
+        <div class="input-with-suffix">
+          <input type="number" id="margin-of-error" min="1" max="50" step="0.5" value="5">
+          <span class="suffix">%</span>
+        </div>
+        <p class="explanation">
+          Margin of error (batas kesalahan) adalah seberapa besar toleransi selisih antara hasil survei Anda
+          dengan kondisi sebenarnya di seluruh populasi. Semakin kecil angka ini, semakin presisi hasilnya —
+          tetapi semakin banyak juga responden yang dibutuhkan. Nilai umum yang dipakai adalah 5% (standar)
+          atau 3% (lebih presisi, butuh lebih banyak responden).
+        </p>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="confidence-level">3. Tingkat Kepercayaan (Confidence Interval)</label>
+        <select id="confidence-level"></select>
+        <p class="explanation">
+          Tingkat kepercayaan menunjukkan seberapa yakin Anda bahwa hasil survei ini benar-benar mencerminkan
+          populasi jika survei ini diulang berkali-kali. Misalnya, tingkat kepercayaan 95% berarti: jika Anda
+          mengulang survei ini 100 kali, sekitar 95 di antaranya akan menghasilkan kesimpulan yang konsisten.
+          Semakin tinggi tingkat kepercayaan, semakin banyak responden yang dibutuhkan.
+        </p>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="response-distribution">4. Distribusi Respons</label>
+        <div class="input-with-suffix">
+          <input type="number" id="response-distribution" min="1" max="99" step="1" value="50">
+          <span class="suffix">%</span>
+        </div>
+        <p class="explanation">
+          Distribusi respons adalah perkiraan proporsi populasi yang akan menjawab/memiliki karakteristik
+          tertentu (misalnya perkiraan proporsi orang yang akan menjawab "ya" terhadap suatu pertanyaan).
+          Jika Anda tidak memiliki data atau perkiraan sebelumnya, gunakan <strong>50%</strong> — ini adalah
+          asumsi paling aman karena menghasilkan ukuran sampel terbesar (paling konservatif), sehingga hasil
+          survei Anda tetap valid apa pun jawaban yang sebenarnya muncul.
+        </p>
+      </div>
+
+      <p class="error-box hidden" id="error-box"></p>
+    </section>
+
+    <section class="card result-card">
+      <h2 class="card-title">Hasil</h2>
+      <div class="result-hero">
+        <span class="result-label">Jumlah sampel minimum yang dibutuhkan</span>
+        <span class="result-number" id="result-number">–</span>
+        <span class="result-unit">responden</span>
+      </div>
+      <p class="result-detail" id="result-detail"></p>
+      <p class="result-detail" id="result-population-ratio"></p>
+
+      <div class="chart-block" id="chart-a-block">
+        <h3 class="chart-title">Sampel vs. Total Populasi</h3>
+        <div class="chart-canvas-wrap chart-canvas-wrap--short">
+          <canvas id="chart-population"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-block">
+        <h3 class="chart-title">Sensitivitas Ukuran Sampel terhadap Margin of Error</h3>
+        <div class="chart-canvas-wrap chart-canvas-wrap--tall">
+          <canvas id="chart-sensitivity"></canvas>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      Rumus: n<sub>0</sub> = Z²·p·(1−p) / e² untuk populasi tak terhingga, dengan koreksi populasi terhingga
+      n = n<sub>0</sub> / (1 + (n<sub>0</sub>−1)/N) jika populasi diketahui. Hasil merupakan estimasi statistik.
+    </p>
+  </footer>
+</div>
+
+<script src="js/vendor/chart.umd.min.js"></script>
+<script src="js/calculator.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

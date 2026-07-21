@@ -1,0 +1,255 @@
+:root {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --ink: #1c2430;
+  --ink-muted: #5b6472;
+  --border: #e1e5ec;
+  --accent: #2a6fd6;
+  --accent-soft: #e6eefc;
+  --danger: #c23b3b;
+  --danger-soft: #fbeaea;
+  --track: #e9edf5;
+  --shadow: 0 1px 3px rgba(20, 30, 50, 0.08), 0 8px 24px rgba(20, 30, 50, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #10141c;
+    --surface: #1a212c;
+    --ink: #e8ecf2;
+    --ink-muted: #9aa5b4;
+    --border: #2b3441;
+    --accent: #5b9bf0;
+    --accent-soft: #1f2e46;
+    --danger: #e77373;
+    --danger-soft: #3a2323;
+    --track: #232b38;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+  font-size: 1.9rem;
+  letter-spacing: -0.01em;
+}
+
+.subhead {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 1rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.card-title {
+  margin: 0 0 18px;
+  font-size: 1.1rem;
+}
+
+.field-group {
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.field-group:last-of-type {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.field-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.radio-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.sub-field {
+  margin: 12px 0 4px;
+}
+
+.sub-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+input[type="number"]:focus,
+select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.input-with-suffix {
+  position: relative;
+  max-width: 160px;
+}
+
+.input-with-suffix .suffix {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ink-muted);
+  pointer-events: none;
+}
+
+.input-with-suffix input {
+  padding-right: 30px;
+}
+
+.explanation {
+  margin: 10px 0 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+.error-box {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 0.9rem;
+}
+
+.result-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 18px 12px 22px;
+  background: var(--accent-soft);
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.result-label {
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+
+.result-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.result-unit {
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.result-detail {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  margin: 6px 0;
+}
+
+.chart-block {
+  margin-top: 26px;
+}
+
+.chart-title {
+  font-size: 0.95rem;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+
+.chart-canvas-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.chart-canvas-wrap--short {
+  height: 140px;
+}
+
+.chart-canvas-wrap--tall {
+  height: 280px;
+}
+
+.footer {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
