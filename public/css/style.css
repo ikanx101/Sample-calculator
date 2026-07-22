@@ -419,3 +419,16 @@ input[type="number"]:focus {
   font-size: 0.8rem;
   color: var(--ink-muted);
 }
+
+.footnote {
+  margin-top: 8px;
+}
+
+.footnote a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.footnote a:hover {
+  text-decoration: underline;
+}
